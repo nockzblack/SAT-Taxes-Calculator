@@ -1,9 +1,11 @@
+package proyectoMedioTerminoPOO;
+
 public class Persona {
-	String nombre, 
+	private String nombre, 
 		   rfc;
-	Ingresos ingresos;
-	Gastos gastos;
-	int nivelEd; // 0->Ninguno 1->Primaria 2->Secundaria 3->Preparatoria
+	private Ingresos ingresos;
+	private Gastos gastos;
+	private int nivelEd; // 0->Ninguno 1->Primaria 2->Secundaria 3->Preparatoria
 
 	public Persona() {
 		this.nombre = "";
@@ -22,22 +24,42 @@ public class Persona {
 	}
 
 	public String getNombre() {
-		return this.nombre;
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getRfc() {
-		return this.rfc;
+		return rfc;
+	}
+
+	public void setRfc(String rfc) {
+		this.rfc = rfc;
 	}
 
 	public Ingresos getIngresos() {
-		return this.ingresos;
+		return ingresos;
+	}
+
+	public void setIngresos(Ingresos ingresos) {
+		this.ingresos = ingresos;
 	}
 
 	public Gastos getGastos() {
-		return this.gastos;
+		return gastos;
 	}
 
-	public String getNivelEd() {
-		return this.nivelEd;
+	public void setGastos(Gastos gastos) {
+		this.gastos = gastos;
+	}
+
+	public int getNivelEd() {
+		return nivelEd;
+	}
+
+	public void setNivelEd(int nivelEd) {
+		this.nivelEd = nivelEd;
 	}
 }

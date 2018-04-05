@@ -1,4 +1,4 @@
-
+package proyectoMedioTerminoPOO;
 
 public class Ingresos {
     private double sueldoMensual,
