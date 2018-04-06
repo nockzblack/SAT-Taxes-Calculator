@@ -1,4 +1,4 @@
-package proyectoMedioTerminoPOO;
+
 
 public class Ingresos {
     private double sueldoMensual,
@@ -40,6 +40,20 @@ public class Ingresos {
 
     public double getPrimaVacacional() {
         return this.primaVacional;
+    }
+
+    public String toString() {
+
+        // Format
+        // sueldoMensual,sueldoAnual,aguinaldo,primavacacional
+
+        String auxStr = "";
+        auxStr += this.sueldoMensual + ",";
+        auxStr += this.sueldoMensual*12 + ",";
+        auxStr += this.aguinaldo + ",";
+        auxStr += this.primaVacional;
+
+        return auxStr;
     }
 
 }

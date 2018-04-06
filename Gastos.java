@@ -1,4 +1,5 @@
 
+
 public class Gastos {
 	private double medicos,
 				   funerarios,
@@ -7,9 +8,9 @@ public class Gastos {
 				   donativos,
 				   transporte,
 				   colegiatura,
-				   totalGastado;
+				   totalGastos;
 	
-	public Gastos () {
+	public Gastos() {
 		this.medicos = 0;
 		this.funerarios = 0;
 		this.sgmm = 0;
@@ -17,7 +18,7 @@ public class Gastos {
 		this.donativos = 0;
 		this.transporte = 0;
 		this.colegiatura = 0;
-		this.totalGastado = this.medicos + this.funerarios + this.sgmm + this.hipotecarios + this.donativos + this.transporte + this.colegiatura;
+		this.totalGastos = 0;
 	}
 	
 	public Gastos (double medicos, double funerarios, double sgmm, double hipotecarios, double donativos, double transporte, double colegiatura) {
@@ -28,7 +29,7 @@ public class Gastos {
 		this.donativos = donativos;
 		this.transporte = transporte;
 		this.colegiatura = colegiatura;
-		this.totalGastado = this.medicos + this.funerarios + this.sgmm + this.hipotecarios + this.donativos + this.transporte + this.colegiatura;
+		this.totalGastos = this.medicos + this.funerarios + this.sgmm + this.hipotecarios + this.donativos + this.transporte + this.colegiatura;
 	}
 
 	public double getMedicos() {
@@ -87,11 +88,28 @@ public class Gastos {
 		this.colegiatura = colegiatura;
 	}
 
-	public double getTotalGastado() {
-		return totalGastado;
+	public double getTotalGastos() {
+		return totalGastos;
 	}
 
-	public void setTotalGastado(double totalGastado) {
-		this.totalGastado = totalGastado;
+	public void setTotalGastos(double totalGastos) {
+		this.totalGastos = totalGastos;
+	}
+
+	public String toString() {
+		String auxStr = "";
+
+		// Format
+		// gMedicos,gFunerarios,SGMM,Hipoteca,donativos,transporte,colegiatura,totalGastos
+
+		auxStr += this.medicos + ",";
+		auxStr += this.sgmm + ",";
+		auxStr += this.hipotecarios + ",";
+		auxStr += this.donativos + ",";
+		auxStr += this.transporte + ",";
+		auxStr += this.colegiatura + ",";
+		auxStr += this.totalGastos;
+		
+		return auxStr;
 	}
 }

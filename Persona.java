@@ -1,4 +1,3 @@
-package proyectoMedioTerminoPOO;
 
 public class Persona {
 	private String nombre, 
@@ -8,10 +7,10 @@ public class Persona {
 	private int nivelEd; // 0->Ninguno 1->Primaria 2->Secundaria 3->Preparatoria
 
 	public Persona() {
-		this.nombre = "";
-		this.rfc = "";
-		this.ingresos = null;
-		this.gastos = null;
+		this.nombre = "someName";
+		this.rfc = "THS!23";
+		this.ingresos = new Ingresos();
+		this.gastos = new Gastos();
 		this.nivelEd = 0;
 	}
 
@@ -22,7 +21,7 @@ public class Persona {
 		this.gastos = gastos;
 		this.nivelEd = nivelEd;
 	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -62,4 +61,33 @@ public class Persona {
 	public void setNivelEd(int nivelEd) {
 		this.nivelEd = nivelEd;
 	}
+
+	public String toString() {
+	
+		// Format:
+		// name,rfc,estudios,ingresosData,gastosData
+	
+		String auxStr = "";
+		String[] nivelDeEstudios = {"Ninguno","Primaria", "Secundaria", "Preparatoria"};
+		// Personal Data
+		auxStr += this.nombre + ",";
+		auxStr += this.rfc + ",";
+		auxStr += nivelDeEstudios[this.nivelEd] + ",";
+
+		// Ingresos
+		auxStr += this.ingresos.toString() + ",";
+
+		// Gastos
+		auxStr += this.gastos.toString();
+
+		return auxStr;
+	}
+
+
+	 public static void main(String[] args) {
+		//System.out.println(new Persona());
+		 System.out.println(new Persona());
+	}
 }
+
+
