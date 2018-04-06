@@ -1,4 +1,3 @@
-package proyectoMedioTerminoPOO;
 
 public class Gastos {
 	private double medicos,
