@@ -45,15 +45,44 @@ public class Ingresos {
     public String toString() {
 
         // Format
-        // sueldoMensual,sueldoAnual,aguinaldo,primavacacional
+        // sueldoMensual,sueldoAnual,aguinaldo,aguinaldoExcento,aguinaldoGravado, 
+    		// primaVacacional,primaVacacionalExcenta,primaVacacionalGravada,
+    		// totalIngresosGravados
+    	
 
         String auxStr = "";
         auxStr += this.sueldoMensual + ",";
         auxStr += this.sueldoMensual*12 + ",";
         auxStr += this.aguinaldo + ",";
-        auxStr += this.primaVacional;
+        auxStr += this.getAguinaldoExcento() + ",";
+        auxStr += this.getAguinaldoGravado() + ",";
+        auxStr += this.primaVacional + ",";
+        auxStr += this.getAguinaldoExcento() + ",";
+        auxStr += this.getAguinaldoGravado() + ",";
+        auxStr += this.getTotalIngresosGravados();
 
         return auxStr;
+    }
+    
+    
+    private double getPrimaVacionalExcenta() {
+    		return this.primaVacional <= 1209?  this.primaVacional:1209;
+    }
+    
+    private double getPrimaVacacionalGravada() {
+    		return this.primaVacional - this.getPrimaVacionalExcenta();	
+    }
+    
+    private double getAguinaldoExcento() {
+    		return this.sueldoMensual/2;
+    }
+    
+    private double getAguinaldoGravado() {
+    		return this.aguinaldo - this.getAguinaldoExcento();
+    }
+    
+    public double getTotalIngresosGravados() {
+    		return (this.sueldoMensual*12) + this.getPrimaVacacionalGravada() + this.getAguinaldoGravado();
     }
 
 }

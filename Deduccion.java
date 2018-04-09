@@ -12,4 +12,10 @@ public class Deduccion {
 												  {750,000.01, 180,850.82, 32.00}, 
 												  {1,000,000.01, 260,850.81, 34.00}, 
 												  {3,000,000.01, 940,850.81, 35.00}};
+	private Persona personaADeducir;
+	
+	public Deduccion() {
+		personaADeducir = new Persona();
+	}
+	
 }
