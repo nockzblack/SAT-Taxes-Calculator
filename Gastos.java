@@ -1,4 +1,4 @@
-
+package proyectoMedioTerminoPOO;
 
 public class Gastos {
 	private double medicos,
@@ -7,8 +7,12 @@ public class Gastos {
 				   hipotecarios,
 				   donativos,
 				   transporte,
-				   colegiatura,
+				   colegiaturaPagada,
+				   colegiaturaMaxDeducir,
 				   totalGastos;
+	private int nivelEd;
+	private static final double colegiaturaDeducir[] = {0, 12900.00, 19900.00, 24500.00};
+	
 	
 	public Gastos() {
 		this.medicos = 0;
@@ -17,19 +21,22 @@ public class Gastos {
 		this.hipotecarios = 0;
 		this.donativos = 0;
 		this.transporte = 0;
-		this.colegiatura = 0;
+		this.colegiaturaPagada = 0;
+		this.colegiaturaMaxDeducir = 0;
+		this.nivelEd = 0;
 		this.totalGastos = 0;
 	}
 	
-	public Gastos (double medicos, double funerarios, double sgmm, double hipotecarios, double donativos, double transporte, double colegiatura) {
+	public Gastos (double medicos, double funerarios, double sgmm, double hipotecarios, double donativos, double transporte, double colegiaturaPagada, int nivelEd) {
 		this.medicos = medicos;
 		this.funerarios = funerarios;
 		this.sgmm = sgmm;
 		this.hipotecarios = hipotecarios;
 		this.donativos = donativos;
 		this.transporte = transporte;
-		this.colegiatura = colegiatura;
-		this.totalGastos = this.medicos + this.funerarios + this.sgmm + this.hipotecarios + this.donativos + this.transporte + this.colegiatura;
+		this.colegiaturaPagada = colegiaturaPagada;
+		this.colegiaturaMaxDeducir = this.colegiaturaPagada > Gastos.colegiaturaDeducir[nivelEd] ? Gastos.colegiaturaDeducir[nivelEd] : this.colegiaturaPagada;
+		this.totalGastos = this.medicos + this.funerarios + this.sgmm + this.hipotecarios + this.donativos + this.transporte + this.colegiaturaMaxDeducir;
 	}
 
 	public double getMedicos() {
@@ -80,12 +87,12 @@ public class Gastos {
 		this.transporte = transporte;
 	}
 
-	public double getColegiatura() {
-		return colegiatura;
+	public double getColegiaturaPagada() {
+		return colegiaturaPagada;
 	}
 
-	public void setColegiatura(double colegiatura) {
-		this.colegiatura = colegiatura;
+	public void setColegiaturaPagada(double colegiaturaPagada) {
+		this.colegiaturaPagada = colegiaturaPagada;
 	}
 
 	public double getTotalGastos() {
@@ -95,21 +102,40 @@ public class Gastos {
 	public void setTotalGastos(double totalGastos) {
 		this.totalGastos = totalGastos;
 	}
+	
+	public int getNivelEd() {
+		return nivelEd;
+	}
 
+	public void setNivelEd(int nivelEd) {
+		this.nivelEd = nivelEd;
+	}
+
+	public double getColegiaturaMaxDeducir() {
+		return colegiaturaMaxDeducir;
+	}
+
+	public void setColegiaturaMaxDeducir(double colegiaturaMaxDeducir) {
+		this.colegiaturaMaxDeducir = colegiaturaMaxDeducir;
+	}
+	
 	public String toString() {
 		String auxStr = "";
 
 		// Format
-		// gMedicos,gFunerarios,SGMM,Hipoteca,donativos,transporte,colegiatura,totalGastos
+		// gMedicos,gFunerarios,SGMM,Hipoteca,donativos,transporte,colegiaturaPagada, colegiaturaADeducir,totalGastos
 
 		auxStr += this.medicos + ",";
+		auxStr += this.funerarios + ",";
 		auxStr += this.sgmm + ",";
 		auxStr += this.hipotecarios + ",";
 		auxStr += this.donativos + ",";
 		auxStr += this.transporte + ",";
-		auxStr += this.colegiatura + ",";
+		auxStr += this.colegiaturaPagada + ",";
+		auxStr += this.colegiaturaMaxDeducir + ",";
 		auxStr += this.totalGastos;
 		
 		return auxStr;
 	}
+
 }

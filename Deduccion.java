@@ -1,6 +1,7 @@
+package proyectoMedioTerminoPOO;
 
 public class Deduccion {
-												 // lowerLimit, fee,
+												 // lowerLimit, fee, percentage
 	private static final double tarifaCalc[][] = {{0.01, 0.00, 1.92}, 
 												  {5,952.85, 114.29, 6.40}, 
 												  {50,524.93, 2,966.91, 10.88}, 

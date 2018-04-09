@@ -1,4 +1,4 @@
-
+package proyectoMedioTerminoPOO;
 
 public class Ingresos {
     private double sueldoMensual,
@@ -22,7 +22,7 @@ public class Ingresos {
         this.sueldoMensual = newSueldoMensual;
     }
 
-    public double lgetSueldoMensual() {
+    public double getSueldoMensual() {
         return this.sueldoMensual;
     }
 
