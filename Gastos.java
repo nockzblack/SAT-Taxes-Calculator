@@ -39,8 +39,8 @@ public class Gastos {
 		this.transporte = transporte;
 		this.nivelEd = nivelEd;
 		this.colegiaturaPagada = colegiaturaPagada;
-		this.colegiaturaMaxDeducir = this.colegiaturaPagada > Gastos.colegiaturaDeducir[this.nivelEd] ? Gastos.colegiaturaDeducir[this.nivelEd] : this.colegiaturaPagada;
-		this.totalGastos = this.medicos + this.funerarios + this.sgmm + this.hipotecarios + this.donativos + this.transporte + this.colegiaturaMaxDeducir;
+		this.colegiaturaMaxDeducir = Gastos.colegiaturaDeducir[this.nivelEd];
+		this.totalGastos = this.medicos + this.funerarios + this.sgmm + this.hipotecarios + this.donativos + this.transporte + this.colegiaturaPagada;
 	}
 
 	public double getMedicos() {

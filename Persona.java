@@ -67,7 +67,6 @@ public class Persona {
 	
 		// Format:
 		// name,rfc,estudios,ingresosData,gastosData
-		// Falta poner los datos en el mismo orden en el que aparecen en el ejemplo
 		
 		String auxStr = "";
 

@@ -34,20 +34,23 @@ public class Deduccion {
 	
 	public Deduccion(Persona persona) {
 		this.personaADeducir = persona;
-		for(int i=0; i < tarifaCalc.length; i++) {
-			try {
-				if(personaADeducir.getIngresos().getTotalIngresosGravados() < Deduccion.tarifaCalc[i + 1][0]) {
-					this.fila = i;
+		seleccionarFila:
+			for(int i=0; i < tarifaCalc.length; i++) {
+				try {
+					if(this.personaADeducir.getIngresos().getSueldoMensual()*12 < Deduccion.tarifaCalc[i + 1][0]) {
+						this.fila = i;
+						break seleccionarFila;
+					}
+				} catch (IndexOutOfBoundsException e) {
+					this.fila = 10;
+					break seleccionarFila;
 				}
-			} catch (IndexOutOfBoundsException e) {
-				this.fila = 10;
 			}
-		}
 		this.deduccionesPermitidas = (this.personaADeducir.getIngresos().getSueldoMensual()) * (12) * (0.1);
 		this.calculoISR = this.personaADeducir.getIngresos().getTotalIngresosGravados() - this.deduccionesPermitidas;
 		this.cuotaFija = Deduccion.tarifaCalc[this.fila][1];
 		this.porcentajeExcedente = Deduccion.tarifaCalc[this.fila][2];
-		this.pagoExcedente = (this.calculoISR - Deduccion.tarifaCalc[fila][0])*this.porcentajeExcedente;
+		this.pagoExcedente = (this.calculoISR - Deduccion.tarifaCalc[this.fila][0])*this.porcentajeExcedente*0.01;
 	}
 	
 	public int getFila() {
@@ -111,13 +114,12 @@ public class Deduccion {
 		//personData
 		auxStr += this.personaADeducir.toString() + ",";
 		
-		auxStr += this.deduccionesPermitidas + ",";
-		auxStr += this.calculoISR + ",";
-		auxStr += this.cuotaFija + ",";
-		auxStr += this.porcentajeExcedente + ",";
-		auxStr += this.pagoExcedente + ",";
-		auxStr += this.getTotalPagar();
+		//Tener 2 decimales
+		double[] arr = {this.deduccionesPermitidas, this.calculoISR, this.cuotaFija, this.porcentajeExcedente, this.pagoExcedente, this.getTotalPagar()};
+		for ( double dub : arr ) {
+			auxStr += String.format( "%.2f", dub ) + ",";
+		}
 		
-		return auxStr;
+		return auxStr.substring(0, auxStr.length() - 1);
 	}
 }
