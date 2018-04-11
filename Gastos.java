@@ -6,6 +6,7 @@ public class Gastos {
 				   sgmm,
 				   hipotecarios,
 				   donativos,
+				   subcuenta,
 				   transporte,
 				   colegiaturaPagada,
 				   colegiaturaMaxDeducir,
@@ -20,6 +21,7 @@ public class Gastos {
 		this.sgmm = 0;
 		this.hipotecarios = 0;
 		this.donativos = 0;
+		this.subcuenta = 0;
 		this.transporte = 0;
 		this.colegiaturaPagada = 0;
 		this.colegiaturaMaxDeducir = 0;
@@ -27,15 +29,17 @@ public class Gastos {
 		this.totalGastos = 0;
 	}
 	
-	public Gastos (double medicos, double funerarios, double sgmm, double hipotecarios, double donativos, double transporte, double colegiaturaPagada, int nivelEd) {
+	public Gastos (double medicos, double funerarios, double sgmm, double hipotecarios, double donativos, double subcuenta, double transporte, double colegiaturaPagada, int nivelEd) {
 		this.medicos = medicos;
 		this.funerarios = funerarios;
 		this.sgmm = sgmm;
 		this.hipotecarios = hipotecarios;
 		this.donativos = donativos;
+		this.subcuenta = subcuenta;
 		this.transporte = transporte;
+		this.nivelEd = nivelEd;
 		this.colegiaturaPagada = colegiaturaPagada;
-		this.colegiaturaMaxDeducir = this.colegiaturaPagada > Gastos.colegiaturaDeducir[nivelEd] ? Gastos.colegiaturaDeducir[nivelEd] : this.colegiaturaPagada;
+		this.colegiaturaMaxDeducir = this.colegiaturaPagada > Gastos.colegiaturaDeducir[this.nivelEd] ? Gastos.colegiaturaDeducir[this.nivelEd] : this.colegiaturaPagada;
 		this.totalGastos = this.medicos + this.funerarios + this.sgmm + this.hipotecarios + this.donativos + this.transporte + this.colegiaturaMaxDeducir;
 	}
 
@@ -77,6 +81,14 @@ public class Gastos {
 
 	public void setDonativos(double donativos) {
 		this.donativos = donativos;
+	}
+
+	public double getSubcuenta() {
+		return subcuenta;
+	}
+
+	public void setSubcuenta(double subcuenta) {
+		this.subcuenta = subcuenta;
 	}
 
 	public double getTransporte() {
@@ -121,18 +133,20 @@ public class Gastos {
 	
 	public String toString() {
 		String auxStr = "";
-
+		String[] nivelDeEstudios = {"ninguno","primaria", "secundaria", "preparatoria"};
 		// Format
-		// gMedicos,gFunerarios,SGMM,Hipoteca,donativos,transporte,colegiaturaPagada,colegiaturaADeducir,totalGastos
+		// gMedicos,gFunerarios,SGMM,Hipoteca,donativos,subcuenta,transporte,colegiaturaPagada,colegiaturaADeducir,totalGastos
 
 		auxStr += this.medicos + ",";
 		auxStr += this.funerarios + ",";
 		auxStr += this.sgmm + ",";
 		auxStr += this.hipotecarios + ",";
 		auxStr += this.donativos + ",";
+		auxStr += this.subcuenta + ",";
 		auxStr += this.transporte + ",";
-		auxStr += this.colegiaturaPagada + ",";
+		auxStr += nivelDeEstudios[this.nivelEd] + ",";
 		auxStr += this.colegiaturaMaxDeducir + ",";
+		auxStr += this.colegiaturaPagada + ",";
 		auxStr += this.totalGastos;
 		
 		return auxStr;

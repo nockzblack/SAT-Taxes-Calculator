@@ -70,16 +70,14 @@ public class Persona {
 		// Falta poner los datos en el mismo orden en el que aparecen en el ejemplo
 		
 		String auxStr = "";
-		String[] nivelDeEstudios = {"Ninguno","Primaria", "Secundaria", "Preparatoria"};
-		// Personal Data
+
 		auxStr += this.nombre + ",";
 		auxStr += this.rfc + ",";
-		auxStr += nivelDeEstudios[this.nivelEd] + ",";
-
-		// Ingresos
+		
+		//ingresosData
 		auxStr += this.ingresos.toString() + ",";
 
-		// Gastos
+		//dastosData	
 		auxStr += this.gastos.toString();
 
 		return auxStr;
@@ -88,8 +86,6 @@ public class Persona {
 
 	 public static void main(String[] args) {
 		//System.out.println(new Persona());
-		 System.out.println(new Persona());
+		 System.out.println(new Deduccion(new Persona("Pedro Pérez Pepito", "PEPP800910", new Ingresos(20000, 20000, 10000), new Gastos(5000, 0, 5000, 0, 0, 6000, 0, 8000, 1), 1)));
 	}
 }
-
-

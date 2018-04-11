@@ -3,19 +3,19 @@ package proyectoMedioTerminoPOO;
 public class Ingresos {
     private double sueldoMensual,
                    aguinaldo,
-                   primaVacional;
+                   primaVacacional;
 
     public Ingresos() {
         this.sueldoMensual = 0;
         this.aguinaldo = 0;
-        this.primaVacional = 0;
+        this.primaVacacional = 0;
     }
 
 
     public Ingresos(double newSueldoMensual, double newAguinaldo, double newPrimaVacional) {
         this.sueldoMensual = newSueldoMensual;
         this.aguinaldo = newAguinaldo;
-        this.primaVacional = newPrimaVacional;
+        this.primaVacacional = newPrimaVacional;
     }
 
     public void setSueldoMensual(double newSueldoMensual) {
@@ -35,11 +35,11 @@ public class Ingresos {
     }
 
     public void setPrimaVacacional(double newPrimaVacacional) {
-        this.primaVacional = newPrimaVacacional;
+        this.primaVacacional = newPrimaVacacional;
     }
 
     public double getPrimaVacacional() {
-        return this.primaVacional;
+        return this.primaVacacional;
     }
 
     public String toString() {
@@ -56,21 +56,21 @@ public class Ingresos {
         auxStr += this.aguinaldo + ",";
         auxStr += this.getAguinaldoExcento() + ",";
         auxStr += this.getAguinaldoGravado() + ",";
-        auxStr += this.primaVacional + ",";
-        auxStr += this.getAguinaldoExcento() + ",";
-        auxStr += this.getAguinaldoGravado() + ",";
+        auxStr += this.primaVacacional + ",";
+        auxStr += this.getPrimaVacacionalExcenta() + ",";
+        auxStr += this.getPrimaVacacionalGravada() + ",";
         auxStr += this.getTotalIngresosGravados();
 
         return auxStr;
     }
     
     
-    private double getPrimaVacionalExcenta() {
-    		return this.primaVacional <= 1209?  this.primaVacional:1209;
+    private double getPrimaVacacionalExcenta() {
+    		return this.primaVacacional <= 1209?  this.primaVacacional:1209;
     }
     
     private double getPrimaVacacionalGravada() {
-    		return this.primaVacional - this.getPrimaVacionalExcenta();	
+    		return this.primaVacacional - this.getPrimaVacacionalExcenta();	
     }
     
     private double getAguinaldoExcento() {

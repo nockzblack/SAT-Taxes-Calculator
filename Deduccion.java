@@ -106,14 +106,17 @@ public class Deduccion {
 		String auxStr = "";
 		
 		//Format
-		//deduccionesPermitidas,calculoISR,cuotaFija,pocentajeExcedente,pagoExcedente,totalPagar
+		//personData,deduccionesPermitidas,calculoISR,cuotaFija,pocentajeExcedente,pagoExcedente,totalPagar
+		
+		//personData
+		auxStr += this.personaADeducir.toString() + ",";
 		
 		auxStr += this.deduccionesPermitidas + ",";
 		auxStr += this.calculoISR + ",";
 		auxStr += this.cuotaFija + ",";
 		auxStr += this.porcentajeExcedente + ",";
 		auxStr += this.pagoExcedente + ",";
-		auxStr += this.getTotalPagar() + ",";
+		auxStr += this.getTotalPagar();
 		
 		return auxStr;
 	}
