@@ -123,7 +123,7 @@ public class Gastos {
 		String auxStr = "";
 
 		// Format
-		// gMedicos,gFunerarios,SGMM,Hipoteca,donativos,transporte,colegiaturaPagada, colegiaturaADeducir,totalGastos
+		// gMedicos,gFunerarios,SGMM,Hipoteca,donativos,transporte,colegiaturaPagada,colegiaturaADeducir,totalGastos
 
 		auxStr += this.medicos + ",";
 		auxStr += this.funerarios + ",";
