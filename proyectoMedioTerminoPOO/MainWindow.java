@@ -26,9 +26,11 @@ public class MainWindow extends JFrame {
 	private ResultsPanel results;
 	
 	public MainWindow() {
-		super("C�lculo de Impuestos para el SAT");
+		super("Cálculo de Impuestos para el SAT");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setPreferredSize(new Dimension(1020,600));
+		input = new InputPanel(this);
+		results = new ResultsPanel(new Deduccion());
 		this.pack();
 		this.setVisible(true);
 		
@@ -36,7 +38,7 @@ public class MainWindow extends JFrame {
 		
 		JMenuBar menuBar = new JMenuBar();
 		
-		JMenu fileMenu = new JMenu("Archivos");
+		JMenu fileMenu = new JMenu("Cálculo Multiple (Archivos)");
 		JMenuItem selectFile = new JMenuItem("Seleccionar Archivo");
 		fileMenu.add(selectFile);
 		selectFile.addActionListener(new ActionListener() {
@@ -45,7 +47,6 @@ public class MainWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String auxStr = "";
-//				String path = "";
 				File selectedFile = null;;
 				StringTokenizer st;
 				int nivelEd;
@@ -55,11 +56,11 @@ public class MainWindow extends JFrame {
 				    chooser.setFileFilter(filter);
 				    int returnVal = chooser.showOpenDialog(MainWindow.this);
 				    if(returnVal == JFileChooser.APPROVE_OPTION) {
-//				       path = chooser.getSelectedFile().getName();
 				    	 selectedFile = chooser.getSelectedFile();
 				    }
 	                BufferedReader auxBuffer = new BufferedReader(new FileReader(selectedFile));
-	                PrintWriter pw = new PrintWriter(new FileWriter(selectedFile.getParent() + "\\archivoResultados.csv"));
+	                PrintWriter pw = new PrintWriter(new FileWriter(selectedFile.getParent() + "/archivoDeResultados.csv"));
+	                
 	                pw.println("Nombre,RFC,Sueldo mensual,Ingreso anual,Aguinaldo,Aguinaldo exento,Aguinaldo gravado,Prima vacacional,Prima vacacional excenta,Prima vacacional gravada,Total ingresos gravan,Medicos y hospitales,Gastos funerarios,SGMM,Hipotecarios,Donativos,Subcuenta retiro,Transporte escolar,Nivel educativo,Maximo a deducir colegiatura,Colegiatura pagada,Total deducciones (sin retiro),Deduccion permitida 10%,Monto ISR,Cuota fija,Porcentaje excedente,Pago excedente,Total a pagar");
 	                while ((auxStr = auxBuffer.readLine()) != null) {
 	                	st = new StringTokenizer(auxStr);
@@ -90,7 +91,7 @@ public class MainWindow extends JFrame {
 	                			new Gastos(medicos, funerarios, sgmm, hipotecarios, donativos, subcuenta, transporte,
 	                					colegiatura,nivelEd), nivelEd)));	                	
 	                }
-	                //TODO HEte
+	                JOptionPane.showMessageDialog(MainWindow.this, "archivoDeResultados.csv generado correctamente, en el mismo directorio que el archivo de entrada");
 	                auxBuffer.close();
 	                pw.close();
 	            } catch (FileNotFoundException ex) {
@@ -104,7 +105,7 @@ public class MainWindow extends JFrame {
 		
 		
 		
-		JMenu individualMenu = new JMenu("Por persona");
+		JMenu individualMenu = new JMenu("Cálculo por Persona (sencillo)");
 		JMenuItem getData = new JMenuItem("Capturar Datos");
 		individualMenu.add(getData);
 		getData.addActionListener(new ActionListener() {
@@ -112,7 +113,6 @@ public class MainWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				input = new InputPanel();
 				MainWindow.this.getContentPane().removeAll();
 				MainWindow.this.add(input);
 				MainWindow.this.revalidate();
@@ -128,7 +128,6 @@ public class MainWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				results = new ResultsPanel();
 				MainWindow.this.getContentPane().removeAll();
 				MainWindow.this.add(results);
 				MainWindow.this.revalidate();
@@ -142,6 +141,15 @@ public class MainWindow extends JFrame {
 		menuBar.add(individualMenu);
 		this.setJMenuBar(menuBar);
 	
+	}
+
+	
+	public void setDeduccion(Deduccion newDeduccion) {
+		this.results.setDeduccion(newDeduccion);
+	}
+	
+	public ResultsPanel getResults() {
+		return this.results;
 	}
 	
 	public static void main(String[] args) {
