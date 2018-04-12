@@ -40,7 +40,7 @@ public class Gastos {
 		this.nivelEd = nivelEd;
 		this.colegiaturaPagada = colegiaturaPagada;
 		this.colegiaturaMaxDeducir = Gastos.colegiaturaDeducir[this.nivelEd];
-		this.totalGastos = this.medicos + this.funerarios + this.sgmm + this.hipotecarios + this.donativos + this.transporte + this.colegiaturaPagada;
+		this.totalGastos = this.medicos + this.funerarios + this.sgmm + this.hipotecarios + this.donativos + this.transporte + (this.colegiaturaPagada > this.colegiaturaMaxDeducir ? this.colegiaturaMaxDeducir : this.colegiaturaPagada);
 	}
 
 	public double getMedicos() {
