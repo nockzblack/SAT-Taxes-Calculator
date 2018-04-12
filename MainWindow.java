@@ -6,7 +6,10 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -22,7 +25,7 @@ public class MainWindow extends JFrame {
 	private ResultsPanel results;
 	
 	public MainWindow() {
-		super("CÃ¡lculo de Impuestos para el SAT");
+		super("Cálculo de Impuestos para el SAT");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setPreferredSize(new Dimension(1020,600));
 		this.pack();
@@ -42,6 +45,8 @@ public class MainWindow extends JFrame {
 				// TODO Auto-generated method stub
 				String auxStr = "";
 				String path = "";
+				StringTokenizer st;
+				int nivelEd;
 				try {
 					JFileChooser chooser = new JFileChooser();
 				    FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV Files", "csv");
@@ -51,10 +56,40 @@ public class MainWindow extends JFrame {
 				       path = chooser.getSelectedFile().getName();
 				    }
 	                BufferedReader auxBuffer = new BufferedReader(new FileReader(path));
-	                auxStr = auxBuffer.readLine();
-	                System.out.println(auxStr);
+	                PrintWriter pw = new PrintWriter(new FileWriter(path + "\\archivoResultados.csv"));
+	                pw.println("Nombre,RFC,Sueldo mensual,Ingreso anual,Aguinaldo,Aguinaldo exento,Aguinaldo gravado,Prima vacacional,Prima vacacional excenta,Prima vacacional gravada,Total ingresos gravan,Medicos y hospitales,Gastos funerarios,SGMM,Hipotecarios,Donativos,Subcuenta retiro,Transporte escolar,Nivel educativo,Maximo a deducir colegiatura,Colegiatura pagada,Total deducciones (sin retiro),Deduccion permitida 10%,Monto ISR,Cuota fija,Porcentaje excedente,Pago excedente,Total a pagar");
+	                while ((auxStr = auxBuffer.readLine()) != null) {
+	                	st = new StringTokenizer(auxStr);
+	                	String nombre = st.nextToken();
+	                	String rfc = st.nextToken();
+	                	double sueldo = Double.parseDouble(st.nextToken());
+	                	double aguinaldo = Double.parseDouble(st.nextToken());
+	                	double prima = Double.parseDouble(st.nextToken());
+	                	double medicos = Double.parseDouble(st.nextToken());
+	                	double funerarios = Double.parseDouble(st.nextToken());
+	                	double sgmm = Double.parseDouble(st.nextToken());
+	                	double hipotecarios = Double.parseDouble(st.nextToken());
+	                	double donativos = Double.parseDouble(st.nextToken());
+	                	double subcuenta = Double.parseDouble(st.nextToken());
+	                	double transporte = Double.parseDouble(st.nextToken());
+	                	String nivelStr = st.nextToken();
+	                	if (nivelStr.toLowerCase() == "primaria") {
+	                		nivelEd = 1;
+	                	} else if (nivelStr.toLowerCase() == "secundaria") {
+	                		nivelEd = 2;
+	                	} else if (nivelStr.toLowerCase() == "preparatoria") {
+	                		nivelEd = 3;
+	                	} else {
+	                		nivelEd = 0;
+	                	}
+	                	double colegiatura = Double.parseDouble(st.nextToken());
+	                	pw.println(new Deduccion(new Persona(nombre, rfc, new Ingresos(sueldo, aguinaldo, prima), 
+	                			new Gastos(medicos, funerarios, sgmm, hipotecarios, donativos, subcuenta, transporte,
+	                					colegiatura,nivelEd), nivelEd)));	                	
+	                }
 	                //TODO HEte
 	                auxBuffer.close();
+	                pw.close();
 	            } catch (FileNotFoundException ex) {
 	                JOptionPane.showMessageDialog(MainWindow.this, ex.getMessage());
 	            } catch (IOException ex) {

@@ -83,10 +83,10 @@ public class Persona {
 	}
 
 
-	 public static void main(String[] args) {
+//	 public static void main(String[] args) {
 
 //		 System.out.println(new Deduccion(new Persona("Pedro Pérez Pepito", "PEPP800910", new Ingresos(20000, 20000, 10000), new Gastos(5000, 0, 5000, 0, 0, 6000, 0, 8000, 1), 1)));
 //		 System.out.println(new Deduccion(new Persona("Pedro Pérez Pepito", "PEPP800910", new Ingresos(25000, 30000, 6000), new Gastos(50000, 0, 30000, 20000, 0, 5000, 0, 25000, 3), 3)));
 //		 System.out.println(new Deduccion(new Persona("Pedro Pérez Pepito", "PEPP800910", new Ingresos(150000, 100000, 10000), new Gastos(7000, 3000, 25000, 120000, 800, 20000, 7000, 120000, 3), 3)));
-	}
+//	}
 }
