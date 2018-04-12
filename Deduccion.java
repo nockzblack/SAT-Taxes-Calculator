@@ -46,7 +46,7 @@ public class Deduccion {
 					break seleccionarFila;
 				}
 			}
-		this.deduccionesPermitidas = (this.personaADeducir.getIngresos().getSueldoMensual()) * (12) * (0.1);
+		this.deduccionesPermitidas = ((this.personaADeducir.getIngresos().getSueldoMensual() * (12)) + this.personaADeducir.getIngresos().getPrimaVacacional() + this.personaADeducir.getIngresos().getAguinaldo()) * (0.1) + this.personaADeducir.getGastos().getSubcuenta();
 		this.calculoISR = this.personaADeducir.getIngresos().getTotalIngresosGravados() - this.deduccionesPermitidas;
 		this.cuotaFija = Deduccion.tarifaCalc[this.fila][1];
 		this.porcentajeExcedente = Deduccion.tarifaCalc[this.fila][2];
