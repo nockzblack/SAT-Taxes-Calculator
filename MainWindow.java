@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.File;
 import java.util.StringTokenizer;
 
 import javax.swing.JFileChooser;
@@ -44,7 +45,8 @@ public class MainWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String auxStr = "";
-				String path = "";
+//				String path = "";
+				File selectedFile = null;;
 				StringTokenizer st;
 				int nivelEd;
 				try {
@@ -53,14 +55,15 @@ public class MainWindow extends JFrame {
 				    chooser.setFileFilter(filter);
 				    int returnVal = chooser.showOpenDialog(MainWindow.this);
 				    if(returnVal == JFileChooser.APPROVE_OPTION) {
-				       path = chooser.getSelectedFile().getName();
+//				       path = chooser.getSelectedFile().getName();
+				    	 selectedFile = chooser.getSelectedFile();
 				    }
-	                BufferedReader auxBuffer = new BufferedReader(new FileReader(path));
-	                PrintWriter pw = new PrintWriter(new FileWriter(path + "\\archivoResultados.csv"));
+	                BufferedReader auxBuffer = new BufferedReader(new FileReader(selectedFile));
+	                PrintWriter pw = new PrintWriter(new FileWriter(selectedFile.getParent() + "\\archivoResultados.csv"));
 	                pw.println("Nombre,RFC,Sueldo mensual,Ingreso anual,Aguinaldo,Aguinaldo exento,Aguinaldo gravado,Prima vacacional,Prima vacacional excenta,Prima vacacional gravada,Total ingresos gravan,Medicos y hospitales,Gastos funerarios,SGMM,Hipotecarios,Donativos,Subcuenta retiro,Transporte escolar,Nivel educativo,Maximo a deducir colegiatura,Colegiatura pagada,Total deducciones (sin retiro),Deduccion permitida 10%,Monto ISR,Cuota fija,Porcentaje excedente,Pago excedente,Total a pagar");
 	                while ((auxStr = auxBuffer.readLine()) != null) {
 	                	st = new StringTokenizer(auxStr);
-	                	String nombre = st.nextToken();
+	                	String nombre = st.nextToken(",");
 	                	String rfc = st.nextToken();
 	                	double sueldo = Double.parseDouble(st.nextToken());
 	                	double aguinaldo = Double.parseDouble(st.nextToken());
@@ -73,11 +76,11 @@ public class MainWindow extends JFrame {
 	                	double subcuenta = Double.parseDouble(st.nextToken());
 	                	double transporte = Double.parseDouble(st.nextToken());
 	                	String nivelStr = st.nextToken();
-	                	if (nivelStr.toLowerCase() == "primaria") {
+	                	if (nivelStr.toLowerCase().equals("primaria")) {
 	                		nivelEd = 1;
-	                	} else if (nivelStr.toLowerCase() == "secundaria") {
+	                	} else if (nivelStr.toLowerCase().equals("secundaria")) {
 	                		nivelEd = 2;
-	                	} else if (nivelStr.toLowerCase() == "preparatoria") {
+	                	} else if (nivelStr.toLowerCase().equals("preparatoria")) {
 	                		nivelEd = 3;
 	                	} else {
 	                		nivelEd = 0;
