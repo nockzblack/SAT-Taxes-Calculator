@@ -1,2 +1,3 @@
-# proyectoMedioTerminoPOO
-Este es el código fuente del proyecto de medio termino de la materia TC2016 - Programación Orientada a Objetos
+# SAT Taxes Calculator
+This project was for the clas TC2016 - Object Oriented Programming
+With this code it is posible to know how much money is needed to pay of taxes to SAT in Mexico
